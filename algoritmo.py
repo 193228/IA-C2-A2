@@ -19,7 +19,8 @@ def umbralR():
 def inicioR(X,Y,Wcero,umbral):
     r =[]
     for i in range(0, 5):
-        iteracion = entrenamiento(Wcero, etaR(), umbral, X, Y)
+        eta = etaR()
+        iteracion = entrenamiento(Wcero, eta, umbral, X, Y)
         grafIteracion(iteracion)
         r.append(iteracion)
     graficacionEtas(r)
@@ -70,6 +71,9 @@ def grafIteracion(lista):
     df = pd.DataFrame(lista)
     fig, ax = plt.subplots()
     ax.plot(df.index.values, df["norma"])
+    plt.xlabel('Iteraciones')  # override the xlabel
+    plt.ylabel('Norma Error')  # override the ylabel
+    plt.title('Grafica de norma de error eta: '+ str(df["eta"][0]))  # override the title
     plt.show()
     return df
 
@@ -93,9 +97,9 @@ def graficacionEtas(lista):
     plt.plot(df["iteracion"][2], df["norma"][2], label="Eta numero3: " + str(df["eta"][2]))
     plt.plot(df["iteracion"][3], df["norma"][3], label="Eta numero4: " + str(df["eta"][3]))
     plt.plot(df["iteracion"][4], df["norma"][4], label="Eta numero5: " + str(df["eta"][4]))
-    plt.xlabel('Generaciones')  # override the xlabel
-    plt.ylabel('Fitness')  # override the ylabel
-    plt.title('Norma error')  # override the title
+    plt.xlabel('Iteraciones')  # override the xlabel
+    plt.ylabel('Norma Error')  # override the ylabel
+    plt.title('Grafica de norma de error')  # override the title
     plt.legend()
     plt.show()
 

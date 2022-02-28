@@ -49,7 +49,8 @@ def ajusteValores(ventana):
     if ventana.aleatorioAprendizaje.isChecked():
         aprendizaje = etaR()
     else:
-        aprendizaje = float(ventana.umbral_2.text())
+        if not ventana.diversasTasas.isChecked():
+            aprendizaje = float(ventana.umbral_2.text())
 
     if ventana.diversasTasas.isChecked():
         graficacion = inicioR(X[0], Y, w0, umbral)
